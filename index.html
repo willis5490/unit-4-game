@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cray Music Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assests/css/styles.css">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>The Crazy Music Game</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" id="directions">
+            <p>
+                You will be given a random number at the start of the game!
+            </p>
+            <p>
+                There are four musical instruments below. By clicking on each instrument you will add a certain value to your score.
+            </p>
+            <p>
+                You will win the game by matching your total score to the random number. If you go over the random number you will lose the
+                game.
+            </p>
+            <p>
+                The value of each instrument will be shown at the bottom of the screen but will constantly change. Are you ready to get crazy mang? 
+            </p>
+            <p>
+                If you lose 5 times, please send 20 doll hairs to this address.
+
+            </p>
+            <p>
+                63 Highbank Ave.
+                North Kingstown RI, 02852
+            </p>
+        </div>
+        <div class="col-sm-3" >
+            <button id="clicker">Click Here To Start!!</button>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 offset-sm-2">
+            <div id="randomnumber">
+                <p id="rando"></p>
+
+            </div>
+
+        </div>
+        <div class="col-sm-3 offset-sm-2" id="scores">
+            <p id="userwins">Wins: 0</p>
+            <p id="userlosses">Losses: 0</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8" id="picks">
+            <img class="instruments" id="guitar" src="assests/images/guitar.jpg" alt="guitar">
+            <img class="instruments" id="banjo" src="assests/images/banjo.jpg" alt="">
+            <img class="instruments" id="flute" src="assests/images/flute.png" alt="">
+            <img class="instruments" id="harmonica" src="assests/images/harmonica.jpg" alt="">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4" id="gip">
+            <p id="currentscore">
+                Your Total Score is:
+            </p>
+
+        </div>
+
+    
+        <div class="col-sm-6 offset-sm-1 " id="skiper">
+            <div id="userscore"></div>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    
+    $(document).ready(function() {
+        var wins = 0;
+        var loser = 0;
+        var result = "";
+        var totals = [];
+        var generate = getRandomInt(1, 5);
+        var great = getRandomInt(10, 20);
+        var totals = Math.floor(totals + generate);
+        
+        function Winner(){
+            alert("You Won!");
+            wins++;
+            $("#userwins").html("You have " + wins + " wins!");
+            Resets();
+            
+        }
+        function Losers(){
+            alert("You Lose!");
+            loser++;
+            $("#userlosses").html("You have lost " + loser + " times!");
+            Resets();
+            
+        }
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
+        }
+        function Resets(){
+            totals = 0;
+            great = getRandomInt(10, 20);
+            $("#rando").html(great);
+            generate = getRandomInt(1, 5);
+            
+
+        }
+
+ 
+        $("#clicker").on("click", function () {
+        $("#rando").html(great);
+            
+        });
+
+        $(".instruments").on("click", function () {
+            var generate = getRandomInt(1, 5);
+            var random2 = $("#userscore").html("That Instrument was worth: " + generate);
+            totals = Math.floor(totals + generate)
+            $("#currentscore").text("Your Total Score is: " + totals);
+
+            if(totals === great ){
+                Winner();
+                
+            }
+            else if(totals > great){
+                Losers();
+            }
+            
+        });
+            
+
+
+
+
+
+    });
+
+</script>
+</html>
